@@ -67,13 +67,24 @@ public:
             return;
         } 
 
+        // if there is only one node/element 
+        if (head->next == nullptr) {
+            delete head;
+            head = nullptr; // optional 
+            return;
+        }
+
+        // for linked lists with size greater than 2
         // grab the head and traverse through the list
         // recall that linked lists is one direction only. 
         CNode* current = head;
+        // with this while loop, we want to get to the last element 
+        // (that is, which 'next' attribute is "nullptr")
         while (current->next->next != nullptr) {
             current = current->next;
         }
-        // note: if there is no next next, the while loop doesn't run!
+
+        
         // delete the last node
         delete current->next;
         // now the 2nd last item is pointing to nullptr as it is now the last item
@@ -87,6 +98,7 @@ public:
         CNode* current = head;
         CNode* temp_next = nullptr;
         
+       // reverse the list 
         while (current != nullptr) {
             temp_next = current->next;
             current->next = temp_prev;
@@ -97,8 +109,19 @@ public:
         head = temp_prev;
     } // reverseList()
     
-    // empty destructor
-    ~StringList() {}
+    // destructor to free memory 
+    ~StringList() 
+    {
+        CNode* current = head;
+
+        // delete all free store memory
+        while (current != nullptr) {
+            // store temp variable "next"
+            CNode* temp = current->next;
+            delete current;
+            current = temp; // traverse to next node
+        }
+    }
 }; // class StringList 
 
 
@@ -117,6 +140,8 @@ int main()
     // list->printList();
     list->reverseList();
     list->printList();
+
+    // delete the list 
+    delete list;
     return 0;
-    
 }
