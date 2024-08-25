@@ -140,7 +140,9 @@ int main()
     // list->printList();
     list->reverseList();
     list->printList();
-
+    list->reverseList();
+    cout << endl;
+    list->printList();
     // delete the list 
     delete list;
     return 0;
