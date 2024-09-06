@@ -127,6 +127,7 @@ public:
 
 int main()
 {
+    // test
     StringList* list = new StringList();
     string maam = "MA'AM";
     string DO_NOT = "DO NOT REDEEM";
