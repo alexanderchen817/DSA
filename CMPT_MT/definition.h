@@ -25,22 +25,33 @@ private:
     public:
         string data;
         Node* next;
+        Node() 
+        {
+            data = "";
+            next = nullptr;
+        }
+        Node(const string &s)
+        {
+            data = s;
+            next = nullptr;
+        }
     };
     Node* head;
     Node* tail;
 public: 
     LinkedList();
-    // overloaded constructor 
-    LinkedList(string data, Node* next);
 
+    // destructor
+    ~LinkedList();
     // insert() at tail in O(1) time 
     void insert(int pos);
 
-    void insertBack();
+    void insertBack(const string &s);
 
-    void insertFront();
+    void insertFront(const string &s);
 
     void remove();
+    void reverseList();
 
     string getItem(int pos) const;
     
