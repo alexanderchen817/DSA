@@ -70,6 +70,16 @@ string LinkedList::getItem(int pos) const
 
 void LinkedList::reverseList()
 {
+    Node* next = nullptr;
+    Node* current = head;
+    Node* prev = nullptr;
 
+    while (current != nullptr) {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev; // don't forget to set the new head
 }
 /// END OF LINKED LIST DEFINITIONS
