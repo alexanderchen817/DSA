@@ -13,7 +13,38 @@ public:
     Stack();
     void pop();
     void push();
-    void peek();
+    void peek() const;
+};
+
+
+// Create stack using Linked list
+class SLLStack {
+private:
+    string data;
+    int stackSize;
+    string* arr;
+    class Node 
+    {
+    public:
+        string data;
+        Node* next;
+        Node() 
+        {
+            data = "";
+            next = nullptr;
+        }
+        Node(const string &s)
+        {
+            data = s;
+            next = nullptr;
+        }
+    };
+    Node* head;
+public:
+    SLLStack();
+    void pop();
+    void push();
+    void peek() const;
 };
 
 // create standard linked list of strings
@@ -52,11 +83,11 @@ public:
 
     void remove();
     void reverseList();
-
+    void removeLast();
     string getItem(int pos) const;
     
     void printList() const;
+    void bar(Node* nd);
+    void foo();
 };
 
-
-// Create stack using Linked list

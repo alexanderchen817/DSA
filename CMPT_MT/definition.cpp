@@ -29,13 +29,13 @@ void LinkedList::insertBack(const string &s)
     // NOTE O(1) INSERTION IS ONLY POSSIBLE BY TAIL NODE
     if (head == nullptr) {
         Node* newNode = new Node(s);
-        head = newNode;
-        tail = newNode; // the tail must be the only element in the list!
+        head = newNode; 
+        tail = newNode; // set tail as the new node since only 1 element in list
     } else {
         Node* newNode = new Node(s);
-        this->tail->next = newNode; // don't forget about the tail
-        this->tail = newNode; // set tail node to the new last node
-        
+        // link the new node to ensure structure isn't broken
+        this->tail->next = newNode; 
+        this->tail = newNode; // update tail node 
     }
 }
 
@@ -81,5 +81,42 @@ void LinkedList::reverseList()
         current = next;
     }
     head = prev; // don't forget to set the new head
+}
+
+void LinkedList::removeLast()
+{
+    // assume list is not empty
+
+    // special case if there is only 1 element
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        return;
+    } else {
+        Node* current = head;
+        while (current->next->next != nullptr) {
+            current = current->next;
+        }
+        delete current->next;
+        current->next = nullptr;
+    }
+}
+void LinkedList::foo()
+{
+    bar(this->head);
+}
+void LinkedList::bar(Node* nd) 
+{
+    if (nd != nullptr && nd->next != nullptr && nd->next->next != nullptr) {
+        if (nd->next->data < nd->next->next->data) {
+            Node* p = nd->next;
+            nd->next = nd->next->next;
+            p->next = nd->next->next;
+            nd->next->next = p;
+            bar(nd->next->next);
+        } else {
+            bar(nd->next);
+        }
+    }
 }
 /// END OF LINKED LIST DEFINITIONS

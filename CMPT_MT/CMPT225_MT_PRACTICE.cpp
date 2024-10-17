@@ -10,18 +10,34 @@ using std::string;
 int main()
 {
     LinkedList list;
-    string text = "hello";
-    list.insertBack(text);
+    list.insertBack("7");
+    list.insertBack("5");
+    list.insertBack("1");
+    list.insertBack("42");
+    list.insertBack("31");
+    
+    
     // list.printList();
-    list.insertFront("hi");
     // cout << endl;
+    // cout << "after calling special fn\n";
+    // list.foo();
     // list.printList();
-    list.insertBack("DO NOT REDEEM");
-    // cout << endl;
-    // list.printList();
-    // cout << list.getItem(1) << endl;
-    list.reverseList();
-    // cout << endl;
-    list.printList();
+    // cout << "\n";
+    
+    LinkedList list2;
+    list2.insertBack("a");
+    list2.insertBack("b");
+    list2.insertBack("c");
+    list2.insertBack("d");
+    list2.insertBack("e");
+    list2.insertBack("f");
+
+    list2.printList();
+    cout << "\n";
+    list2.reverseList();
+    list2.printList();
+    cout << "\n";
+    list2.removeLast();
+    list2.printList();
     return 0;
 }
