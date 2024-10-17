@@ -17,7 +17,7 @@ Queue::Queue()
 
 Queue::~Queue()
 {
-    delete arr;
+    delete[] arr;
 }
 
 // changes rear and size
@@ -25,8 +25,22 @@ void Queue::enqueue(const int &item)
 {
     // first check if the queue is full
     if (isFull()) {
-        // double the capacity of the array
+        // double array capacity
+        int oldCapacity = capacity;
+        capacity *= 2;
+        int* newArr = new int[capacity];
+        for (int i = 0; i < this->getSize(); i++) {
+            newArr[i] = arr[(front + i) % oldCapacity];
+        }
+        delete[] arr;
+        arr = newArr;
 
+
+        // Reset front to 0 and adjust rear
+        // this is because the capacity is bigger,
+        // and all the elements are now in order sequentially 
+        front = 0;
+        rear = size - 1;
     }
     // change the rear 
     rear = (rear + 1) % capacity;
@@ -38,6 +52,10 @@ void Queue::enqueue(const int &item)
 void Queue::dequeue()
 {
     // first check if the queue is empty before removing
+    if (isEmpty()) {
+        return;
+    }
+
     this->front = (front + 1) % this->capacity;
     this->size--;
 }
@@ -75,8 +93,9 @@ int Queue::getSize() const
 }
 void Queue::print() const
 {
+    // notice that this print loop works based off the mod operator
     for (int i = 0; i < this->getSize(); i++) {
-        cout << arr[i] << endl;
+        cout << arr[(front + i) % capacity] << endl;
     }
 }
 

@@ -11,11 +11,15 @@ using std::getline;
 int main()
 {
     Queue q;
-    q.enqueue(42);
-    q.print();
-    cout << endl;
-    q.enqueue(50);
     q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
     q.print();
     cout << endl;
+
+    q.dequeue();
+    q.print();
+    cout << "front item: " << q.getFront() << endl;
+    cout << "rear item: " << q.getRear() << endl;
 }
